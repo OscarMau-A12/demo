@@ -41,7 +41,7 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @CrossOrigin(allowCredentials = "true")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody UserLoginDto userLoginDto, BindingResult bidBindingResult){
         if(bidBindingResult.hasErrors()) {
@@ -59,8 +59,7 @@ public class AuthController {
         }
     }
 
-    @CrossOrigin(allowCredentials = "true")
-
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/register")
     public ResponseEntity<Object> register(@Valid @RequestBody NewUserDto newUserDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
