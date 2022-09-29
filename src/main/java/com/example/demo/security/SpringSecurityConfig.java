@@ -32,10 +32,9 @@ public class SpringSecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        http.cors().and().csrf()
-                .disable()
+        http.cors().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/**","/file/**","/project/**")
+                .antMatchers("/auth/**","/document/**","/project/**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -46,4 +45,6 @@ public class SpringSecurityConfig {
         return http.build();
     }
 
+    //.and().csrf()
+    //                .disable()
 }
