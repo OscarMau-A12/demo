@@ -41,8 +41,9 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @CrossOrigin(exposedHeaders = "Access-Control-Allow-Origin", origins = "http://localhost:3000/")
+
     @PostMapping("/login")
+    @CrossOrigin(origins = "http://localhost:3000", methods={RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
     public ResponseEntity<?> login(@Valid @RequestBody UserLoginDto userLoginDto, BindingResult bidBindingResult){
         if(bidBindingResult.hasErrors()) {
             return new ResponseEntity<>("Bad request", HttpStatus.BAD_REQUEST);
@@ -59,8 +60,8 @@ public class AuthController {
         }
     }
 
-    @CrossOrigin(exposedHeaders = "Access-Control-Allow-Origin", origins = "http://localhost:3000/")
     @PostMapping("/register")
+    @CrossOrigin(origins = "http://localhost:3000", methods={RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
     public ResponseEntity<Object> register(@Valid @RequestBody NewUserDto newUserDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>("Bad request", HttpStatus.BAD_REQUEST);
